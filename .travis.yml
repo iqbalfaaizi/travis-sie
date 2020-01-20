@@ -10,5 +10,5 @@ rvm:
 deploy:
   provider: heroku
   api_key:
-    secure: "w492XIhqehvsEHd4rXq3Mg"
+    secure: "a48462a1-3d8e-4888-be34-350521d69ea2"
     
