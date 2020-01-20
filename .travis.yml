@@ -3,7 +3,12 @@ node_js:
   - "10.17.0"
 script: true
 
+rvm:
+ - 2.2
+ - jruby
+
 deploy:
   provider: heroku
   api_key:
     secure: "w492XIhqehvsEHd4rXq3Mg"
+    
