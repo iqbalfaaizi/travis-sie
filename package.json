@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "lab -v **/*.test.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@hapi/code": "^8.0.1",
     "@hapi/hapi": "^18.4.0",
+    "@hapi/lab": "^22.0.3",
     "jest": "^24.9.0",
     "nodemon": "^2.0.2"
   }
