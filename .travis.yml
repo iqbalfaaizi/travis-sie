@@ -2,8 +2,8 @@ language: node_js
 rvm:
  - 2.2
  - jruby
- 
-os: linux
+
+os: win32
 
 deploy:
   provider: heroku
