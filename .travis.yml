@@ -2,3 +2,10 @@ language: node_js
 rvm:
  - 2.2
  - jruby
+ 
+os: linux
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: "YOUR ENCRYPTED API KEY"
