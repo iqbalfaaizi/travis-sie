@@ -1,17 +1,13 @@
 language: node_js
 node_js:
   - "10.17.0"
-script: true
-
-rvm:
- - 2.2
- - jruby
-
+script: 'true'
 deploy:
   provider: heroku
   api_key:
     secure: "974272b7-87a6-472c-babc-b232fa01ee07"
   app: skuisy-app
+  skip_cleanup: true
   on:
     tags: true
     all_branches: true
