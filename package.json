@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "lab"
+    "test": "lab",
+    "start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
