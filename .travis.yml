@@ -1,27 +1,8 @@
 language: node_js
 node_js:
   - "10.17.0"
-script: 'true'
 deploy:
-  - provider: heroku
-    api_key:
-      secure: "974272b7-87a6-472c-babc-b232fa01ee07"
-    app: skuisy-app
-    env: dev
-    skip_cleanup: true
-    run:
-      - "rake db:migrate"
-      - "rake cleanup"
-    on:
-      branch: develop01
-  - provider: heroku
-    api_key:
-      secure: "974272b7-87a6-472c-babc-b232fa01ee07"
-    app: skuisy-app
-    env: prod
-    skip_cleanup: true
-    run:
-      - "rake db:migrate"
-      - "rake cleanup"
-    on:
-      branch: master
+  provider: heroku
+  api_key:
+    secure: "974272b7-87a6-472c-babc-b232fa01ee07"
+  app: skuisy-app
