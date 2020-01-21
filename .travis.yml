@@ -11,4 +11,9 @@ deploy:
   provider: heroku
   api_key:
     secure: "974272b7-87a6-472c-babc-b232fa01ee07"
-    
+  app: skuisy-app
+  on:
+    all_branches: true
+  run:
+    - "rake db:migrate"
+    - "rake cleanup"
