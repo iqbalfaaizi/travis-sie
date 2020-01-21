@@ -13,6 +13,7 @@ deploy:
     secure: "974272b7-87a6-472c-babc-b232fa01ee07"
   app: skuisy-app
   on:
+    tags: true
     all_branches: true
   run:
     - "rake db:migrate"
