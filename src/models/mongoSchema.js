@@ -14,43 +14,9 @@ const userSchema = new Schema({
       id: Number,
       email: { type: String, unique: true },
       password: String,
-      username: String,
-      phone: String,
-      first_name: String,
-      last_name: String,
-      address: String,
-      reg_date: Date,
-      active: Boolean,
-      failedCount: Number,
-      longLock: Date,
-      balance: Number,
-      userpin: Array,
-      payeeList: [{
-            username: String, add_date: { type: Date, default: Date.now }
-      }]
-})
-const transactionSchema = new Schema({
-      email: String,
-      dateTransaction: Date,
-      payee: String,
-      usernamePayee: String,
-      usernameSender: String,
-      activity: Array,
-      amount: Number,
-      type: String,
-      description: String,
-      categories: String
-})
-const productSchema = new Schema({
-      email: String,
-      username: String,
-      productName: String,
-      productDesc : String,
-      productPrice: String,
-
-
+      reg_date: {type: Date, default: Date.now},
+      active: {type: Boolean, default: true},
 })
 const User = mongoose.model('users', userSchema)
-const Transaction = mongoose.model('transactions', transactionSchema)
-const Product = mongoose.model('products', productSchema)
-module.exports = { User, Transaction, Product }
+
+module.exports = { User }

@@ -10,28 +10,16 @@ exports.signup = async (request, h) => {
       if ((await checkEmail(request.payload.email)) === null) {
             try {
                   const id = Math.floor(Math.random() * (10 **16))
-                  const currTime = Date.now();
-                  Object.assign(request.payload, {
-                        id: id,
-                        createdAt: currTime,
-                        locked_until: currTime,
-                        balance: 0
-                  })
+                  Object.assign(request.payload, {id: id})
                   const newUser = new User(request.payload)
                   await newUser.save()
-                  return h.response({
-                        message: 'success'
-                  })
+                  return h.response('success')
             } catch (err) {
-                  return h.response({
-                        message: 'failed'
-                  }).code(401)
+                  return h.response('failed').code(401)
             }
 
       } else {
-            return h.response({
-                  message: 'Email already used'
-            }).code(403)
+            return h.response('Email already used').code(403)
       }
 }
 
