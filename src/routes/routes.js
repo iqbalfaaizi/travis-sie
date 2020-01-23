@@ -7,7 +7,7 @@ const routes = [
         method: 'GET',
         path: '/',
         handler: async (request, h) => {
-            return h.response('Hello ladies').code(200)
+            return h.response({message: 'Hello ladies'}).code(200)
         }
     }, {
         method: 'POST',
