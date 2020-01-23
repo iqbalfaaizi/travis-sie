@@ -17,6 +17,21 @@ const userSchema = new Schema({
       reg_date: {type: Date, default: Date.now},
       active: {type: Boolean, default: true},
 })
-const User = mongoose.model('users', userSchema)
 
-module.exports = { User }
+const productSchema = new Schema({
+      id: Number,
+      title: String,
+      description: String,
+      price: Number,
+      stock: Number,
+      seller: String,
+      review: Array,
+      created_at: {type: Date, default: Date.now},
+      picture: String,
+      category: String
+})
+
+const User = mongoose.model('users', userSchema)
+const Product = mongoose.model('products', productSchema)
+
+module.exports = { User,Product }
