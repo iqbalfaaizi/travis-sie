@@ -38,7 +38,7 @@ exports.login = async (request, h) => {
                         },{
                               new: true
                         }).lean();
-                        return h.response('Login success').code(200)
+                        return h.response('success')
                   } else {
                         return h.response('Your password is wrong').code(401)
                   }
@@ -46,26 +46,6 @@ exports.login = async (request, h) => {
                   return h.response('Email not registered').code(404)
             }
       } catch (err) {
-            return h.response('Uncaught error').code(400)
-      }
-}
-
-exports.setpin = async (request, h) => {
-      try {
-            const result = await User.findOneAndUpdate({
-                  email: request.payload.email
-            }, {
-                  pinUser: request.payload.pinUser
-            }, {
-                  new: true
-            })
-            return result
-      } catch (err) {
-            return h.response(
-                  [{
-                        auth: false,
-                        message: err
-                  }]
-            )
+            return h.response('failed').code(400)
       }
 }

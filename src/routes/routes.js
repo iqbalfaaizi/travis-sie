@@ -17,11 +17,6 @@ const routes = [
         method: 'POST',
         path: `${base_path}/login`,
         handler: login
-    },
-    {
-        method: 'PUT',
-        path: `${base_path}/setpin/{useremail}`,
-        handler: setpin
     }
 ]
 
