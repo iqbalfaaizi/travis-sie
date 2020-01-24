@@ -16,9 +16,6 @@ exports.addProduct = async (request, h) => {
 
 exports.getProduct = async (request, h) => {
       try {
-
-            // product = await Product.findOne({ title: title }, { 'title': 1 })
-            // return h.response('success,by search')
             product = await Product.find()
             return product
       } catch (err) {

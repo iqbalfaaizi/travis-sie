@@ -25,7 +25,6 @@ const productSchema = new Schema({
       price: Number,
       stock: Number,
       seller: String,
-      review: Array,
       created_at: {type: Date, default: Date.now},
       picture: String,
       category: String
