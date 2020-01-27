@@ -1,5 +1,5 @@
 const {
-      Product
+      Product, User
 } = require('../models/mongoSchema')
 
 exports.addProduct = async (request, h) => {
@@ -21,4 +21,22 @@ exports.getProduct = async (request, h) => {
       } catch (err) {
             return h.response('failed').code(401)
       }
+}
+
+exports.addCart = async (request, h) => {
+      const { email } = request.params
+      const { payload } = request
+      return User.findOneAndUpdate({ 'email': email }, { $push: { cart: { 'title': payload.title, 'description': payload.description, 'quantity': payload.quantity, 'price': payload.price } } }, { new: true })
+            .then(res => {
+                  if (!res) {
+                        return h.response({ message: "Email not found" })
+                  }
+                  return h.response(res).code(202)
+            })
+}
+
+exports.getCart = async (request, h) => {
+      const { email } = request.params
+      const user = await User.findOne({ email: email }, { 'cart': 1 })
+      return user.cart
 }

@@ -16,6 +16,7 @@ const userSchema = new Schema({
       password: String,
       reg_date: {type: Date, default: Date.now},
       active: {type: Boolean, default: true},
+      cart: Array
 })
 
 const productSchema = new Schema({
