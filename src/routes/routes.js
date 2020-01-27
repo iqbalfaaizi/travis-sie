@@ -1,6 +1,6 @@
 'use strict'
 const { signup, login } = require('../handlers/auth')
-const { addProduct, getProduct } = require('../handlers/product')
+const { addProduct, getProduct, addCart, getCart } = require('../handlers/product')
 const base_path = '/api/v1'
 
 const routes = [
@@ -26,6 +26,14 @@ const routes = [
         method: 'GET',
         path: `${base_path}/getproduct`,
         handler: getProduct
+    }, {
+        method: 'PUT',
+        path: `${base_path}/addcart/{email}`,
+        handler: addCart
+    }, {
+        method: 'GET',
+        path: `${base_path}/getcart/{email}`,
+        handler: getCart
     }
 ]
 
