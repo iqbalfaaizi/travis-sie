@@ -72,7 +72,8 @@ const routes = [
                     description: Joi.string().required(),
                     stock: Joi.number().required(),
                     price: Joi.number().required(),
-                    seller: Joi.string().required()
+                    seller: Joi.string().required(),
+                    picture: Joi.string().required()
                 })
             }
         },
@@ -109,7 +110,8 @@ const routes = [
                     description: Joi.string().required(),
                     stock: Joi.number().required(),
                     price: Joi.number().required(),
-                    seller: Joi.string().required()
+                    seller: Joi.string().required(),
+                    picture: Joi.string().required()
                 })
             }
         },

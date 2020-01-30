@@ -26,7 +26,7 @@ exports.getProduct = async (request, h) => {
 exports.addCart = async (request, h) => {
       const { email } = request.params
       const { payload } = request
-      return User.findOneAndUpdate({ 'email': email }, { $push: { cart: { 'title': payload.title, 'description': payload.description, 'stock': parseInt(payload.stock), 'price': parseInt(payload.price), 'seller': payload.seller } } }, { new: true })
+      return User.findOneAndUpdate({ 'email': email }, { $push: { cart: { 'title': payload.title, 'description': payload.description, 'stock': parseInt(payload.stock), 'price': parseInt(payload.price), 'seller': payload.seller,'picture': payload.picture } } }, { new: true })
             .then(res => {
                   if (!res) {
                         return h.response({ message: "Email not found" })
@@ -44,7 +44,7 @@ exports.getCart = async (request, h) => {
 exports.removeCart = async (request, h) => {
       const { email } = request.params
       const { payload } = request
-      return User.findOneAndUpdate({ 'email': email }, { $pull: { cart: { 'title': payload.title, 'description': payload.description, 'stock': parseInt(payload.stock), 'price': parseInt(payload.price), 'seller': payload.seller } } }, { new: true })
+      return User.findOneAndUpdate({ 'email': email }, { $pull: { cart: { 'title': payload.title, 'description': payload.description, 'stock': parseInt(payload.stock), 'price': parseInt(payload.price), 'seller': payload.seller, 'picture': payload.picture } } }, { new: true })
           .then(res => {
               if (!res) {
                   return h.response({ message: "Email not found" })
