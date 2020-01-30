@@ -1,24 +1,13 @@
 const {
       Product, User
 } = require('../models/mongoSchema')
-const path = require('path')
-const fs = require('fs')
 
 exports.addProduct = async (request, h) => {
       try {
-            let id = Math.floor(Math.random() * (10 ** 16))
-            let extension = path.extname(request.payload.picture.hapi.filename)
-            let timestamp = new Date().getTime();
-            let fileName = email + '-' + timestamp + extension;
-            (request.payload.picture).pipe(fs.createWriteStream(__dirname + '/src/img/' + fileName))
-            Object.assign(request.payload, { id: id, picture: fileName })
-            console.log(request.payload)
+            const id = Math.floor(Math.random() * (10 ** 16))
+            Object.assign(request.payload, { id: id })
             const newProduct = new Product(request.payload)
             await newProduct.save()
-            // await Product.insertMany([{
-            //       id:id,
-            //       email: 
-            // }])
             return h.response('success')
       } catch (err) {
             return h.response('failed').code(401)
@@ -51,3 +40,15 @@ exports.getCart = async (request, h) => {
       const user = await User.findOne({ email: email }, { 'cart': 1 })
       return user.cart
 }
+
+exports.removeCart = async (request, h) => {
+      const { email } = request.params
+      const { payload } = request
+      return User.findOneAndUpdate({ 'email': email }, { $pull: { cart: { 'title': payload.title, 'description': payload.description, 'stock': parseInt(payload.stock), 'price': parseInt(payload.price), 'seller': payload.seller } } }, { new: true })
+          .then(res => {
+              if (!res) {
+                  return h.response({ message: "Email not found" })
+              }
+              return h.response(res).code(202)
+          })
+  }
