@@ -26,12 +26,12 @@ exports.getProduct = async (request, h) => {
 exports.addCart = async (request, h) => {
       const { email } = request.params
       const { payload } = request
-      return User.findOneAndUpdate({ 'email': email }, { $push: { cart: { 'title': payload.title, 'description': payload.description, 'quantity': payload.quantity, 'price': payload.price } } }, { new: true })
+      return User.findOneAndUpdate({ 'email': email }, { $push: { cart: { 'title': payload.title, 'description': payload.description, 'stock': parseInt(payload.stock), 'price': parseInt(payload.price), 'seller': payload.seller } } }, { new: true })
             .then(res => {
                   if (!res) {
                         return h.response({ message: "Email not found" })
                   }
-                  return h.response(res).code(202)
+                  return h.response('success').code(202)
             })
 }
 
