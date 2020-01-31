@@ -6,7 +6,7 @@ const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const Pack = require('./package.json');
-const Qs = require('qs');
+const Qs =  require('qs');
 
 const start = async () => {
     const plugins = [Inert, Vision, Swagger];

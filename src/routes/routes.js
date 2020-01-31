@@ -1,6 +1,6 @@
 'use strict'
 const { signup, login } = require('../handlers/auth')
-const { addProduct, getProduct, addCart, getCart } = require('../handlers/product')
+const { addProduct, getProduct, addCart, getCart, removeCart } = require('../handlers/product')
 const base_path = '/api/v1'
 const Joi = require('@hapi/joi')
 
@@ -9,7 +9,7 @@ const routes = [
         method: 'GET',
         path: '/',
         handler: async (request, h) => {
-            return h.response({message: 'Hello ladies'}).code(200)
+            return h.response({ message: 'Hello ladies' }).code(200)
         }
     }, {
         method: 'POST',
@@ -66,6 +66,14 @@ const routes = [
                 params: Joi.object({
                     email: Joi.string()
                         .required()
+                }),
+                payload: Joi.object({
+                    title: Joi.string().required(),
+                    description: Joi.string().required(),
+                    stock: Joi.number().required(),
+                    price: Joi.number().required(),
+                    seller: Joi.string().required(),
+                    picture: Joi.string().required()
                 })
             }
         },
@@ -81,6 +89,29 @@ const routes = [
                 params: Joi.object({
                     email: Joi.string()
                         .required()
+                })
+            }
+        },
+    }, {
+        method: 'PUT',
+        path: `${base_path}/removecart/{email}`,
+        options: {
+            handler: removeCart,
+            description: 'Remove Cart',
+            notes: 'Remove element array of cart',
+            tags: ['api', 'cart'], // ADD THIS TAG
+            validate: {
+                params: Joi.object({
+                    email: Joi.string()
+                        .required()
+                }),
+                payload: Joi.object({
+                    title: Joi.string().required(),
+                    description: Joi.string().required(),
+                    stock: Joi.number().required(),
+                    price: Joi.number().required(),
+                    seller: Joi.string().required(),
+                    picture: Joi.string().required()
                 })
             }
         },
