@@ -1,16 +1,14 @@
-'use srict'
-const Hapi = require('@hapi/hapi')
+const hapi = require('@hapi/hapi')
 const { routes } = require('./src/routes/routes')
-const Path = require('path')
 const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const HapiSwagger = require('hapi-swagger');
 const Pack = require('./package.json');
+const Path = require('path');
 const Qs =  require('qs');
 
 const start = async () => {
-    const plugins = [Inert, Vision, Swagger];
-    const server = Hapi.server({
+    const server = hapi.server({
         port: process.env.PORT || 3333,
         host: '0.0.0.0',
         routes: {
@@ -41,7 +39,6 @@ const start = async () => {
     ]);
 
     server.route(routes);
-    await server.register(plugins);
     await server.start();
     console.log('Server running at:', server.info.uri);
 };

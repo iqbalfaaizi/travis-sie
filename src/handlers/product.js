@@ -38,6 +38,17 @@ exports.addCart = async (request, h) => {
 exports.getCart = async (request, h) => {
       const { email } = request.params
       const user = await User.findOne({ email: email }, { 'cart': 1 })
+      let grandtot = 0;
+      for(i=0; i<user.cart.length; i++) {
+            let total = user.cart[i].stock * user.cart[i].price;
+            grandtot += total
+            let productTotal = {
+                  'total' : total,
+                  'grandtotal' : grandtot
+            }
+            Object.assign(user.cart[i], productTotal);
+      }
+      // console.log(JSON.stringify(user.cart));
       return user.cart
 }
 
